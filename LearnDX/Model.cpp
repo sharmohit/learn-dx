@@ -18,12 +18,12 @@ void Model::CreateModel()
 
 	// Use the Direct3D device to load resources into graphics memory.
 	ID3D11Device* device = m_deviceResources->GetDevice();
-
 	ID3D11DeviceContext* context = m_deviceResources->GetDeviceContext();
 
-	// Create cube geometry.
+	/* Create color cube geometry.
 	VertexPositionColor CubeVertices[] =
 	{
+		// Cube Vertices Data
 		{ DirectX::XMFLOAT3(-0.5f, -0.5f, -0.5f), DirectX::XMFLOAT3(0, 0, 0), },
 		{ DirectX::XMFLOAT3(-0.5f, -0.5f, 0.5f), DirectX::XMFLOAT3(0, 0, 1), },
 		{ DirectX::XMFLOAT3(-0.5f, 0.5f, -0.5f), DirectX::XMFLOAT3(0, 1, 0), },
@@ -33,6 +33,24 @@ void Model::CreateModel()
 		{ DirectX::XMFLOAT3(0.5f, -0.5f, 0.5f), DirectX::XMFLOAT3(1, 0, 1), },
 		{ DirectX::XMFLOAT3(0.5f, 0.5f, -0.5f), DirectX::XMFLOAT3(1, 1, 0), },
 		{ DirectX::XMFLOAT3(0.5f, 0.5f, 0.5f), DirectX::XMFLOAT3(1, 1, 1), },
+
+		Pyramid Vertex Data
+		{ DirectX::XMFLOAT3( 0.0f,  0.5f,  0.0f), DirectX::XMFLOAT3(0.2, 0.2, 0.2), },
+		{ DirectX::XMFLOAT3( 0.5f,  0.0f,  0.5f), DirectX::XMFLOAT3(1, 1, 1), },
+		{ DirectX::XMFLOAT3(-0.5f,  0.0f,  0.5f), DirectX::XMFLOAT3(1, 1, 1), },
+		{ DirectX::XMFLOAT3(-0.5f,  0.0f, -0.5f), DirectX::XMFLOAT3(1, 1, 1), },
+		{ DirectX::XMFLOAT3( 0.5f,  0.0f,  -0.5f), DirectX::XMFLOAT3(1, 1, 1), },
+	};*/
+
+	
+	VertexPositionTexture CubeVertices[] =
+	{
+		// Pyramid Vertices
+		{ DirectX::XMFLOAT3(0.0f, 0.5f, 0.0f), DirectX::XMFLOAT2(0.5, 0), },
+		{ DirectX::XMFLOAT3(0.5f, 0.0f, 0.5f), DirectX::XMFLOAT2(1, 1), },
+		{ DirectX::XMFLOAT3(-0.5f, 0.0f, 0.5f), DirectX::XMFLOAT2(1, 0), },
+		{ DirectX::XMFLOAT3(-0.5f, 0.0f, -0.5f), DirectX::XMFLOAT2(1, 1), },
+		{ DirectX::XMFLOAT3(0.5f, 0.0f, -0.5f), DirectX::XMFLOAT2(0, 1), },
 	};
 
 	// Create vertex buffer:
@@ -57,6 +75,8 @@ void Model::CreateModel()
 	// Create index buffer:
 	unsigned short CubeIndices[] =
 	{
+		/*
+		// Cube Index Vertices
 		0, 2, 1, // -x
 		1, 2, 3,
 
@@ -73,7 +93,15 @@ void Model::CreateModel()
 		0, 6, 2,
 
 		1, 3, 7, // +z
-		1, 7, 5,
+		1, 7, 5, */
+
+		//Pyramid Index Data
+		0, 1, 2, // Front
+		0, 2, 3, // Left
+		0, 3, 4, // Back
+		0, 4, 1, // Right
+		1, 2, 4, // Bottom
+		2, 3, 4, // Bottom 
 	};
 
 	m_indexCount = ARRAYSIZE(CubeIndices);
@@ -96,7 +124,7 @@ void Model::CreateModel()
 		);
 
 	// Set up the IA stage by setting the input topology and layout.
-	UINT stride = sizeof(VertexPositionColor);
+	UINT stride = sizeof(VertexPositionTexture);
 	UINT offset = 0;
 
 	context->IASetVertexBuffers(

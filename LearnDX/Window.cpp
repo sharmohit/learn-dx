@@ -2,12 +2,8 @@
 
 const std::wstring WIN_CLASS_NAME = L"WindowClass";
 
-Window::Window(HINSTANCE hInstance, std::wstring title, int width, int height)
+Window::Window()
 {
-	m_hInstance = hInstance;
-	m_winTitle = title;
-	m_width = width;
-	m_height = height;
 }
 
 Window::~Window()
@@ -16,10 +12,15 @@ Window::~Window()
 	DestroyWindow(m_hWnd);
 }
 
-HRESULT Window::CreateDesktopWindow()
+HRESULT Window::CreateDesktopWindow(HINSTANCE hInstance, std::wstring title, int width, int height)
 {
 	if (m_hInstance == NULL)
 		m_hInstance = (HINSTANCE)GetModuleHandle(NULL);
+
+	m_hInstance = hInstance;
+	m_winTitle = title;
+	m_width = width;
+	m_height = height;
 
 	HICON hIcon = NULL;
 	WCHAR szExePath[MAX_PATH];

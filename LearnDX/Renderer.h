@@ -1,22 +1,8 @@
-//// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
-//// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-//// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
-//// PARTICULAR PURPOSE.
-////
-//// Copyright (c) Microsoft Corporation. All rights reserved
 #pragma once
 
-
-//-----------------------------------------------------------------------------
-// Includes
-//-----------------------------------------------------------------------------
 #include "DeviceResources.h"
 #include "Model.h"
 #include "Shader.h"
-
-//-----------------------------------------------------------------------------
-// Class declarations
-//-----------------------------------------------------------------------------
 
 class Renderer
 {
@@ -42,9 +28,7 @@ private:
 	std::shared_ptr<Model> m_pModel;
 	std::shared_ptr<Shader> m_pShader;
 
-	//-----------------------------------------------------------------------------
-	// Variables for rendering the cube
-	//-----------------------------------------------------------------------------
+
 	typedef struct _constantBufferStruct {
 		DirectX::XMFLOAT4X4 world;
 		DirectX::XMFLOAT4X4 view;

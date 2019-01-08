@@ -1,22 +1,3 @@
-//// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
-//// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-//// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
-//// PARTICULAR PURPOSE.
-////
-//// Copyright (c) Microsoft Corporation. All rights reserved
-
-
-//-----------------------------------------------------------------------------
-// File: Cube.cpp
-//
-// Renders a spinning, colorful cube.
-//
-//-----------------------------------------------------------------------------
-
-
-//-----------------------------------------------------------------------------
-// Includes
-//-----------------------------------------------------------------------------
 #include "dxstdafx.h"
 
 #include <string>
@@ -26,9 +7,6 @@
 #include "Renderer.h"
 
 
-//-----------------------------------------------------------------------------
-// Constructor
-//-----------------------------------------------------------------------------
 Renderer::Renderer(std::shared_ptr<DeviceResources> deviceResources)
 :
 m_frameCount(0),
@@ -150,9 +128,9 @@ void Renderer::CreateViewAndPerspective()
 {
 	// Use DirectXMath to create view and perspective matrices.
 
-	DirectX::XMVECTOR eye = DirectX::XMVectorSet(0.0f, 0.7f, 1.5f, 0.f);
-	DirectX::XMVECTOR at = DirectX::XMVectorSet(0.0f, -0.1f, 0.0f, 0.f);
-	DirectX::XMVECTOR up = DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 0.f);
+	DirectX::XMVECTOR eye = DirectX::XMVectorSet(0.0f, 1.5f, -3.0f, 0.0f);
+	DirectX::XMVECTOR at = DirectX::XMVectorSet(0.0f, -3.0f, 5.0f, 0.0f);
+	DirectX::XMVECTOR up = DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 
 	DirectX::XMStoreFloat4x4(
 		&m_constantBufferData.view,
@@ -167,6 +145,7 @@ void Renderer::CreateViewAndPerspective()
 
 	float aspectRatio = m_deviceResources->GetAspectRatio();
 
+	
 	DirectX::XMStoreFloat4x4(
 		&m_constantBufferData.projection,
 		DirectX::XMMatrixTranspose(
@@ -178,6 +157,11 @@ void Renderer::CreateViewAndPerspective()
 		)
 		)
 		);
+
+	// Scaling Testing
+	DirectX::XMStoreFloat4x4(&m_constantBufferData.world, DirectX::XMMatrixTranspose(
+		(DirectX::XMMatrixScaling(1, 1, 1)
+		)));
 }
 
 //-----------------------------------------------------------------------------
@@ -226,19 +210,28 @@ void Renderer::Update()
 		)
 		);
 
+	/* Animation Block
+	m_frameCount++;
+	DirectX::XMStoreFloat4x4(
+		&m_constantBufferData.world,
+		DirectX::XMMatrixTranspose(
+		DirectX::XMMatrixTranslation(
+		-(float)m_frameCount/100, 0.0f, 0.0f
+		)
+		)
+		); */
+
 	if (m_frameCount == 400000)  m_frameCount = 0;
 }
 
-//-----------------------------------------------------------------------------
-// Render the cube.
-//-----------------------------------------------------------------------------
+
 void Renderer::Render()
 {
 	// Use the Direct3D device context to draw.
 	ID3D11DeviceContext* context = m_deviceResources->GetDeviceContext();
 
 	ID3D11RenderTargetView* renderTarget = m_deviceResources->GetRenderTarget();
-	ID3D11DepthStencilView* depthStencil = m_deviceResources->GetDepthStencil();
+	ID3D11DepthStencilView* depthStencil = m_deviceResources->GetDepthStencilView();
 
 	context->UpdateSubresource(
 		m_pConstantBuffer.Get(),
@@ -251,7 +244,7 @@ void Renderer::Render()
 
 	// Clear the render target and the z-buffer.
 	//const float teal[] = { 0.192f, 0.301f, 0.474f, 1.000f };
-	const float teal[] = { 0.0f, 0.0f, 0.0f, 1.000f };
+	const float teal[] = { 0.074f, 0.027f, 0.152f, 1.0f };
 	context->ClearRenderTargetView(
 		renderTarget,
 		teal
@@ -261,6 +254,7 @@ void Renderer::Render()
 		D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL,
 		1.0f,
 		0);
+
 
 	// Set the render target.
 	context->OMSetRenderTargets(
@@ -274,6 +268,8 @@ void Renderer::Render()
 		1,
 		m_pConstantBuffer.GetAddressOf()
 		);
+
+	//m_pShader->Render();
 
 	// Calling Draw tells Direct3D to start sending commands to the graphics device.
 	context->DrawIndexed(

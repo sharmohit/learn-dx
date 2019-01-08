@@ -1,4 +1,5 @@
 #include <memory>
+#include<comdef.h>
 
 #include "dxstdafx.h"
 #include "Shader.h"
@@ -26,18 +27,25 @@ void Shader::CreateShader()
 	FILE* vShader, *pShader;
 	BYTE* bytes;
 
-	size_t destSize = 4096;
+	size_t destSize = 20480;
 	size_t bytesRead = 0;
 	bytes = new BYTE[destSize];
 
-	fopen_s(&vShader, "CubeVertexShader.cso", "rb");
-	bytesRead = fread_s(bytes, destSize, 1, 4096, vShader);
+	fopen_s(&vShader, "VertexShaderTex.cso", "rb");
+	bytesRead = fread_s(bytes, destSize, 1, 20480, vShader);
 	hr = device->CreateVertexShader(
 		bytes,
 		bytesRead,
 		nullptr,
 		&m_pVertexShader
 		);
+
+	if (FAILED(hr))
+	{
+		_com_error err(hr);
+		LPCTSTR errMsg = err.ErrorMessage();
+		printf("ERR:%s\n", errMsg);
+	}
 
 	D3D11_INPUT_ELEMENT_DESC iaDesc[] =
 	{
@@ -48,26 +56,52 @@ void Shader::CreateShader()
 		0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 	};
 
+	D3D11_INPUT_ELEMENT_DESC iaAdvanceDesc[] =
+	{
+		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT,
+		0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+
+		{ "TEXCOORD", 0, DXGI_FORMAT_R32G32B32_FLOAT,
+		0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+	};
+
 	hr = device->CreateInputLayout(
-		iaDesc,
-		ARRAYSIZE(iaDesc),
+		iaAdvanceDesc,
+		ARRAYSIZE(iaAdvanceDesc),
 		bytes,
 		bytesRead,
 		&m_pInputLayout
 		);
+
+	D3D11_SAMPLER_DESC samplerDesc;
+	samplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+	samplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+	samplerDesc.MipLODBias = 0.0f;
+	samplerDesc.MaxAnisotropy = 1;
+	samplerDesc.ComparisonFunc = D3D11_COMPARISON_ALWAYS;
+	samplerDesc.BorderColor[0] = 0;
+	samplerDesc.BorderColor[1] = 0;
+	samplerDesc.BorderColor[2] = 0;
+	samplerDesc.BorderColor[3] = 0;
+	samplerDesc.MinLOD = 0;
+	samplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
+
+	hr = device->CreateSamplerState(&samplerDesc, &m_pSamplerState);
 
 	delete bytes;
 
 
 	bytes = new BYTE[destSize];
 	bytesRead = 0;
-	fopen_s(&pShader, "CubePixelShader.cso", "rb");
-	bytesRead = fread_s(bytes, destSize, 1, 4096, pShader);
+	fopen_s(&pShader, "PixelShaderTex.cso", "rb");
+	bytesRead = fread_s(bytes, destSize, 1, 20480, pShader);
 	hr = device->CreatePixelShader(
 		bytes,
 		bytesRead,
 		nullptr,
-		m_pPixelShader.GetAddressOf()
+		&m_pPixelShader
 		);
 
 	delete bytes;
@@ -91,4 +125,25 @@ void Shader::CreateShader()
 		nullptr,
 		0
 		);
+
+	context->PSSetSamplers(0, 1, &m_pSamplerState);
+
+}
+
+void Shader::Render()
+{
+	// Set up the vertex shader stage.
+	m_deviceResources->GetDeviceContext()->VSSetShader(
+		m_pVertexShader.Get(),
+		nullptr,
+		0
+		);
+
+	// Set up the pixel shader stage.
+	m_deviceResources->GetDeviceContext()->PSSetShader(
+		m_pPixelShader.Get(),
+		nullptr,
+		0
+		);
+	m_deviceResources->GetDeviceContext()->PSSetSamplers(0, 1, &m_pSamplerState);
 }

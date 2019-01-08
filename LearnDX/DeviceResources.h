@@ -1,23 +1,4 @@
-//// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
-//// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-//// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
-//// PARTICULAR PURPOSE.
-////
-//// Copyright (c) Microsoft Corporation. All rights reserved
 #pragma once
-
-
-//-----------------------------------------------------------------------------
-// File: Cube.cpp
-//
-// Desktop app that renders a spinning, colorful cube.
-//
-//-----------------------------------------------------------------------------
-
-
-//-----------------------------------------------------------------------------
-// Class declarations
-//-----------------------------------------------------------------------------
 
 class DeviceResources
 {
@@ -25,11 +6,12 @@ public:
 	DeviceResources();
 	~DeviceResources();
 
-	HRESULT CreateDeviceResources(HWND hWnd);
 	HRESULT CreateDeviceResources();
 	HRESULT CreateWindowResources(HWND hWnd);
 
 	HRESULT ConfigureBackBuffer();
+	HRESULT ConfigureDepthStencilState();
+	HRESULT ConfigureRasterizerState();
 	HRESULT ReleaseBackBuffer();
 	HRESULT GoFullScreen();
 	HRESULT GoWindowed();
@@ -39,7 +21,9 @@ public:
 	ID3D11Device*           GetDevice() { return m_pd3dDevice.Get(); };
 	ID3D11DeviceContext*    GetDeviceContext() { return m_pd3dDeviceContext.Get(); };
 	ID3D11RenderTargetView* GetRenderTarget() { return m_pRenderTarget.Get(); }
-	ID3D11DepthStencilView* GetDepthStencil() { return m_pDepthStencilView.Get(); }
+	ID3D11DepthStencilView* GetDepthStencilView() { return m_pDepthStencilView.Get(); }
+	ID3D11DepthStencilState* GetDepthStencilState() { return m_pDepthStencilState.Get(); }
+	ID3D11RasterizerState* GetRasterizerState() { return m_pRasterizerState.Get(); }
 
 	void Present();
 
@@ -49,7 +33,7 @@ private:
 	// Direct3D device
 	//-----------------------------------------------------------------------------
 	Microsoft::WRL::ComPtr<ID3D11Device>        m_pd3dDevice;
-	Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_pd3dDeviceContext; // immediate context
+	Microsoft::WRL::ComPtr<ID3D11DeviceContext> m_pd3dDeviceContext;
 	Microsoft::WRL::ComPtr<IDXGISwapChain>      m_pDXGISwapChain;
 
 
@@ -65,6 +49,13 @@ private:
 	//-----------------------------------------------------------------------------
 	Microsoft::WRL::ComPtr<ID3D11Texture2D>         m_pDepthStencil;
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilView>  m_pDepthStencilView;
+	Microsoft::WRL::ComPtr<ID3D11DepthStencilState>  m_pDepthStencilState;
+
+
+	//-----------------------------------------------------------------------------
+	// Direct3D device resources for the Rasterizer State
+	//-----------------------------------------------------------------------------
+	Microsoft::WRL::ComPtr<ID3D11RasterizerState>         m_pRasterizerState;
 
 
 	//-----------------------------------------------------------------------------

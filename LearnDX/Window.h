@@ -5,10 +5,10 @@
 
 class Window {
 public:
-	Window(HINSTANCE hInstance, std::wstring title, int width, int height);
+	Window();
 	~Window();
 
-	HRESULT CreateDesktopWindow();
+	HRESULT CreateDesktopWindow(HINSTANCE hInstance, std::wstring title, int width, int height);
 	HWND GetWindowHandle() { return m_hWnd; };
 
 	static LRESULT CALLBACK StaticWindowProc(HWND hWnd,

@@ -1,6 +1,6 @@
 #pragma once
 
-class Entity3D{
+class Entity3D {
 public:
 	virtual ~Entity3D();
 private:
