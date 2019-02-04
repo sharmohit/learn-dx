@@ -28,6 +28,9 @@
     <Filter Include="Source Files\Utility">
       <UniqueIdentifier>{684647fc-4e66-4ff8-9124-199cc12bb2e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Core\Entity">
+      <UniqueIdentifier>{9be4f9da-63af-4ac2-9a14-affd9b60deda}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window.cpp">
@@ -60,14 +63,20 @@
     <ClCompile Include="MainScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Entity3D.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Texture2D.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="WICTextureLoader.cpp">
       <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\Core\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Source Files\Core\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>Source Files\Core\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -101,14 +110,20 @@
     <ClInclude Include="MainScene.h">
       <Filter>Source Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Entity3D.h">
-      <Filter>Source Files\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Texture2D.h">
       <Filter>Source Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="WICTextureLoader.h">
       <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Source Files\Core\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Source Files\Core\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Source Files\Core\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

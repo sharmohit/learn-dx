@@ -1,5 +1,6 @@
-#include "dxstdafx.h"
+#include <memory>
 
+#include "dxstdafx.h"
 #include "MainScene.h"
 
 MainScene::MainScene()
@@ -13,6 +14,8 @@ MainScene::~MainScene()
 void MainScene::Init()
 {
 	printf("\n MainMenu Init()");
+	m_pCube = std::shared_ptr<Cube>(new Cube());
+	printf("\n Cube Scale X:%f", m_pCube->GetTransform()->GetScale().x);
 }
 
 void MainScene::Input()
