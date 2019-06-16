@@ -90,6 +90,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="DeviceResources.cpp" />
     <ClCompile Include="MainScene.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -107,6 +108,7 @@
     <ClInclude Include="dxstdafx.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="MainScene.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Scene.h" />

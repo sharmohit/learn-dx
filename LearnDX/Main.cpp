@@ -44,7 +44,7 @@ INT WINAPI WinMain(HINSTANCE hInstance,
 		deviceResources->CreateWindowResources(window->GetWindowHandle());
 		renderer->CreateWindowSizeDependentResources();
 
-		//deviceResources->GoFullScreen();
+		deviceResources->GoFullScreen();
 
 		// Whoops! We resized the "window" when we went full-screen. Better
 		// tell the renderer.

@@ -13,131 +13,146 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Core">
+    <Filter Include="Source Files\Framework">
+      <UniqueIdentifier>{b6201877-143d-4039-8b9a-980aa44777a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\Core">
       <UniqueIdentifier>{ae139800-b1df-45d3-bb8c-b5091866ed4a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Graphics">
+    <Filter Include="Source Files\Framework\Graphics">
       <UniqueIdentifier>{6bbfadde-26c5-432c-9a8d-c0439ee81e5c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Shaders">
-      <UniqueIdentifier>{81691490-d9e2-422b-8080-9fdba531485f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Scenes">
+    <Filter Include="Source Files\Framework\Scenes">
       <UniqueIdentifier>{5d888cc4-73f6-47c1-a6ff-7f427b55abdf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Utility">
+    <Filter Include="Source Files\Framework\Utility">
       <UniqueIdentifier>{684647fc-4e66-4ff8-9124-199cc12bb2e4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Core\Entity">
+    <Filter Include="Source Files\Renderer">
+      <UniqueIdentifier>{8247a414-cef9-417f-9a79-73b9261961ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\Core\Entity">
       <UniqueIdentifier>{9be4f9da-63af-4ac2-9a14-affd9b60deda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer\Direct3D">
+      <UniqueIdentifier>{7d52edca-5e97-4e12-8648-6a37dd1a9fa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer\Direct3D\Shaders">
+      <UniqueIdentifier>{81691490-d9e2-422b-8080-9fdba531485f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Window.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>Source Files\Graphics</Filter>
+      <Filter>Source Files\Framework\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
-      <Filter>Source Files\Graphics</Filter>
+      <Filter>Source Files\Framework\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Model.cpp">
-      <Filter>Source Files\Graphics</Filter>
+      <Filter>Source Files\Framework\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
-      <Filter>Source Files\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="DeviceResources.cpp">
-      <Filter>Source Files\Core</Filter>
+      <Filter>Source Files\Framework\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="MainScene.cpp">
-      <Filter>Source Files\Scenes</Filter>
+      <Filter>Source Files\Framework\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="Texture2D.cpp">
-      <Filter>Source Files\Graphics</Filter>
+      <Filter>Source Files\Framework\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="WICTextureLoader.cpp">
-      <Filter>Source Files\Utility</Filter>
+      <Filter>Source Files\Framework\Utility</Filter>
     </ClCompile>
     <ClCompile Include="Entity.cpp">
-      <Filter>Source Files\Core\Entity</Filter>
+      <Filter>Source Files\Framework\Core\Entity</Filter>
     </ClCompile>
     <ClCompile Include="Transform.cpp">
-      <Filter>Source Files\Core\Entity</Filter>
+      <Filter>Source Files\Framework\Core\Entity</Filter>
     </ClCompile>
     <ClCompile Include="Cube.cpp">
-      <Filter>Source Files\Core\Entity</Filter>
+      <Filter>Source Files\Framework\Core\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\Framework\Core\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\Framework\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files\Framework\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>Source Files\Framework\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="DeviceResources.cpp">
+      <Filter>Source Files\Renderer\Direct3D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Window.h">
-      <Filter>Source Files\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Source Files\Graphics</Filter>
+      <Filter>Source Files\Framework\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
-      <Filter>Source Files\Graphics</Filter>
+      <Filter>Source Files\Framework\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Model.h">
-      <Filter>Source Files\Graphics</Filter>
+      <Filter>Source Files\Framework\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="dxstdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
-      <Filter>Source Files\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="DeviceResources.h">
-      <Filter>Source Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Source Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>Source Files\Core</Filter>
+      <Filter>Source Files\Framework\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="MainScene.h">
-      <Filter>Source Files\Scenes</Filter>
+      <Filter>Source Files\Framework\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="Texture2D.h">
-      <Filter>Source Files\Graphics</Filter>
+      <Filter>Source Files\Framework\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="WICTextureLoader.h">
-      <Filter>Source Files\Utility</Filter>
+      <Filter>Source Files\Framework\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Entity.h">
-      <Filter>Source Files\Core\Entity</Filter>
+      <Filter>Source Files\Framework\Core\Entity</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>Source Files\Core\Entity</Filter>
+      <Filter>Source Files\Framework\Core\Entity</Filter>
     </ClInclude>
     <ClInclude Include="Cube.h">
-      <Filter>Source Files\Core\Entity</Filter>
+      <Filter>Source Files\Framework\Core\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Source Files\Framework\Core\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Source Files\Framework\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Source Files\Framework\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>Source Files\Framework\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="DeviceResources.h">
+      <Filter>Source Files\Renderer\Direct3D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="VertexShader.hlsl">
-      <Filter>Source Files\Shaders</Filter>
+      <Filter>Source Files\Renderer\Direct3D\Shaders</Filter>
     </FxCompile>
     <FxCompile Include="PixelShader.hlsl">
-      <Filter>Source Files\Shaders</Filter>
+      <Filter>Source Files\Renderer\Direct3D\Shaders</Filter>
     </FxCompile>
     <FxCompile Include="VertexShaderTex.hlsl">
-      <Filter>Source Files\Shaders</Filter>
+      <Filter>Source Files\Renderer\Direct3D\Shaders</Filter>
     </FxCompile>
     <FxCompile Include="PixelShaderTex.hlsl">
-      <Filter>Source Files\Shaders</Filter>
+      <Filter>Source Files\Renderer\Direct3D\Shaders</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>
